@@ -1,7 +1,10 @@
+import Header from "./komponensek/Header";
+
 function App() {
+ 
   return (
     <div className="App">
-      <h1>Kezdés</h1>
+      <Header  />
     </div>
   );
 }
