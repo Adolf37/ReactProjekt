@@ -1,28 +1,11 @@
-import { useState } from "react";
+import EgyTask from "./EgyTask";
 
- 
-const Tasks = () => {
+const Tasks = ({tasks}) => {
 
-    const [tasks,setTasks] = useState([
-        {
-            id:1,
-            text:'Gym',
-            day:'Hetfo 10:30',
-            emlekezteto:true
-        },
-        {
-            id:2,
-            text:'Taco',
-            day:'Hetfo 12:00',
-            emlekezteto:false
-    
-        }
-    ])
-
-    return (
+   return (
         <>
             {tasks.map((elem)=>{
-               return <h2 key={elem.id}>{elem.text},{elem.day}</h2>
+                return <EgyTask key={elem.id} task ={elem}/>
             })}
         </>
     )
