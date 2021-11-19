@@ -8,11 +8,10 @@ const Header = ({title}) => {
     }
 
     return (
-       <header>
+       <header className="header">
            <h1 >{title}</h1>
             <Button szin="green" szoveg="add" onClick={onClick}/>
-            <Button szin="red" szoveg="close" onClick={onClick}/>
-            <Button />
+            
        </header>
     )
 }
