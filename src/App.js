@@ -1,6 +1,7 @@
 import Header from "./komponensek/Header";
 import Tasks from "./komponensek/Tasks";
 import { useState } from "react";
+import AddTask from "./komponensek/AddTask";
 
 function App() {
   const [tasks,setTasks] = useState([
@@ -25,11 +26,19 @@ const deleteTask =(id)=>{
   setTasks(tasks.filter((task)=> task.id !== id))
 }
 
+const emlekezteto=(id)=>{
+  setTasks(tasks.map((task)=>
+     task.id === id ?
+      {...task,emlekezteto: !task.emlekezteto} : task))
+
+}
+
   return (
     <div className="container">
       <Header  />
+      <AddTask />
      {tasks.length >0 ? 
-     (<Tasks tasks = {tasks} onDelete={deleteTask}/>)
+     (<Tasks tasks = {tasks} onDelete={deleteTask} emlekezteto = {emlekezteto}/>)
       : ('Nincs feladat,esemeny')}
       
     </div>
