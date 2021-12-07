@@ -1,14 +1,27 @@
 import {useState} from 'react'
 
 
-const AddTask = () => {
+const AddTask = ({onAdd}) => {
 
     const [text,setText] =useState('')
     const [day,setDay] =useState('')
     const [emlek,setEmlek] =useState(false)
 
+    const onSubmit = (e) =>{
+        e.preventDefault() //hogy ne oldalra vonatkozzon
+
+        if(!text){
+            alert('Nem adtal meg esemenyt')
+            return
+        }
+        onAdd({text,day,emlek})
+        setDay('')
+        setText('')
+        setEmlek(false)
+    }
+
     return (
-        <form className = 'add-form'>
+        <form className = 'add-form' onSubmit = {onSubmit}>
             <div className='form-control'>
                 <label>Esemény</label>
                 <input type="text" 
@@ -28,6 +41,7 @@ const AddTask = () => {
             <div className='form-control form-control-check'>
                 <label>Emlékeztető</label>
                 <input type="checkbox"
+                    checked={emlek}
                     value={emlek}
                     onChange = {(e)=> setEmlek(e.currentTarget.checked)}
                      />
