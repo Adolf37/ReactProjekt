@@ -4,6 +4,8 @@ import { useState } from "react";
 import AddTask from "./komponensek/AddTask";
 
 function App() {
+
+  const [show,setShow] = useState(false)
   const [tasks,setTasks] = useState([
     {
         id:1,
@@ -13,7 +15,7 @@ function App() {
     },
     {
         id:2,
-        text:'Taco',
+        text:'Sakk',
         day:'Hetfo 13:00',
         emlekezteto:false
 
@@ -44,8 +46,8 @@ const emlekezteto=(id)=>{
 
   return (
     <div className="container">
-      <Header  />
-      <AddTask onAdd={addTask} />
+      <Header  plusz = {()=>setShow(!show)} showErteke ={show}/>
+      { show && <AddTask onAdd={addTask} />}
      {tasks.length >0 ? 
      (<Tasks tasks = {tasks} onDelete={deleteTask} emlekezteto = {emlekezteto}/>)
       : ('Nincs feladat,esemeny')}
