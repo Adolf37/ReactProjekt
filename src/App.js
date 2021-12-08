@@ -19,12 +19,18 @@ function App() {
         day:'Hetfo 13:00',
         emlekezteto:false
 
+    },
+
+    {
+      id:3,
+      text:'Bemutatás,megbeszélés',
+      day:'2021.12.08  holnap 12:30',
+      emlekezteto:true
     }
 ])
 
 
 //Feladat hozzadas
-
 const addTask = (task)=>{
   const id = Math.floor(Math.random()*1000) + 1
   const newTask = {id, ...task}
@@ -32,11 +38,11 @@ const addTask = (task)=>{
 }
 
 //Feladat Torlese
-
 const deleteTask =(id)=>{
   setTasks(tasks.filter((task)=> task.id !== id))
 }
 
+//kiemelje vagy sem
 const emlekezteto=(id)=>{
   setTasks(tasks.map((task)=>
      task.id === id ?
@@ -46,7 +52,7 @@ const emlekezteto=(id)=>{
 
   return (
     <div className="container">
-      <Header  plusz = {()=>setShow(!show)} showErteke ={show}/>
+      <Header  plusz = { ()=>setShow(!show) } showErteke ={show}/>
       { show && <AddTask onAdd={addTask} />}
      {tasks.length >0 ? 
      (<Tasks tasks = {tasks} onDelete={deleteTask} emlekezteto = {emlekezteto}/>)

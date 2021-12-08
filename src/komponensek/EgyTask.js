@@ -1,8 +1,8 @@
-import {FaTimes} from 'react-icons/fa';
+import {FaTimes} from 'react-icons/fa'; //x ikon amivel torlok esemenyt
 
 const EgyTask = ({task,onDelete,emlekezteto}) => {
     return (
-        <div className={`task ${task.emlekezteto ? 'emlekezteto' : ' '}`} onDoubleClick={()=>emlekezteto(task.id)}>
+        <div className={` task ${task.emlekezteto ? 'emlekezteto' : ' '} `} onDoubleClick={()=>emlekezteto(task.id)}>
             <h3>{task.text}
              <FaTimes 
                 style={{color:'orange',cursor:'pointer'}} 

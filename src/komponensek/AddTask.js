@@ -8,7 +8,7 @@ const AddTask = ({onAdd}) => {
     const [emlekezteto,setEmlek] =useState(false)
 
     const onSubmit = (e) =>{
-        e.preventDefault() //hogy ne oldalra vonatkozzon
+        e.preventDefault() //ne frissitse az oldalt
 
         if(!text){
             alert('Nem adtal meg esemenyt')
