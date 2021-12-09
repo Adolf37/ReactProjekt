@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import Button from './Button';
 
-const Header = ({title,plusz,showErteke}) => {
+const Header = ({title,add,showValue}) => {
 
     
 
     return (
        <header className="header">
            <h1 >{title}</h1>
-            <Button szin={showErteke ? "orange" : "green"} szoveg={showErteke ? "close" : "add"} onClick={plusz}/>
+            <Button color={showValue ? "orange" : "green"} text={showValue ? "close" : "add"} onClick={add}/>
             
        </header>
     )
@@ -24,14 +24,5 @@ Header.propTypes = {
     title:PropTypes.string.isRequired,
 }
 
-// CSS javascriptben
-/*
-const stilus = {
-    color:'blue',
-    textAlign:'center'
-}
-style={{color:'green', fontSize:'2.2em'}}
-<h2 style={stilus}>Masik</h2>
-*/
 
 export default Header

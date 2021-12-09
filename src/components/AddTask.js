@@ -5,7 +5,7 @@ const AddTask = ({onAdd}) => {
 
     const [text,setText] =useState('')
     const [day,setDay] =useState('')
-    const [emlekezteto,setEmlek] =useState(false)
+    const [reminder,setReminder] =useState(false)
 
     const onSubmit = (e) =>{
         e.preventDefault() //ne frissitse az oldalt
@@ -18,10 +18,10 @@ const AddTask = ({onAdd}) => {
             alert('Nem adtal meg idopontot')
             return 
         }
-        onAdd({text,day,emlekezteto})
+        onAdd({text,day,reminder})
         setDay('')
         setText('')
-        setEmlek(false)
+        setReminder(false)
     }
 
     return (
@@ -45,9 +45,9 @@ const AddTask = ({onAdd}) => {
             <div className='form-control form-control-check'>
                 <label>Emlékeztető</label>
                 <input type="checkbox"
-                    checked = {emlekezteto}
-                    value={emlekezteto}
-                    onChange = {  (e)=> setEmlek(e.currentTarget.checked)  }
+                    checked = {reminder}
+                    value={reminder}
+                    onChange = {  (e)=> setReminder(e.currentTarget.checked)  }
                      />
             </div>
             <input type="submit" value="Mentes" className='btn btn-block'/>

@@ -1,7 +1,7 @@
-import Header from "./komponensek/Header";
-import Tasks from "./komponensek/Tasks";
+import Header from "./components/Header";
+import Tasks from "./components/Tasks";
 import { useState } from "react";
-import AddTask from "./komponensek/AddTask";
+import AddTask from "./components/AddTask";
 
 function App() {
 
@@ -11,51 +11,56 @@ function App() {
         id:1,
         text:'Gym',
         day:'Hetfo 10:30',
-        emlekezteto:true
+        reminder:true
     },
     {
         id:2,
         text:'Sakk',
         day:'Hetfo 13:00',
-        emlekezteto:false
+        reminder:false
 
     },
 
-    {
-      id:3,
-      text:'Bemutatás,megbeszélés',
-      day:'2021.12.08  holnap 12:30',
-      emlekezteto:true
-    }
 ])
 
 
-//Feladat hozzadas
 const addTask = (task)=>{
   const id = Math.floor(Math.random()*1000) + 1
+
+  //concat the task and the id
   const newTask = {id, ...task}
+
+  //adding the new task to the tasks
   setTasks([...tasks, newTask])
 }
 
-//Feladat Torlese
+
 const deleteTask =(id)=>{
-  setTasks(tasks.filter((task)=> task.id !== id))
+  // eliminateet the task with the given id
+  let reduced_list = tasks.filter((task)=> task.id !== id)
+  
+  // update task with new list
+  setTasks(reduced_list)
 }
 
-//kiemelje vagy sem
-const emlekezteto=(id)=>{
+
+const setReminder=(id)=>{
+  //selecting the tasks one bye one
   setTasks(tasks.map((task)=>
      task.id === id ?
-      {...task,emlekezteto: !task.emlekezteto} : task))
+     //if the id is equal we give back the whole task but we change the reminder
+     {...task,reminder: !task.reminder} : task))
+     //if not equal we give back the task without any change
+      
 
 }
 
   return (
     <div className="container">
-      <Header  plusz = { ()=>setShow(!show) } showErteke ={show}/>
+      <Header  add = { ()=>setShow(!show) } showValue ={show}/>
       { show && <AddTask onAdd={addTask} />}
      {tasks.length >0 ? 
-     (<Tasks tasks = {tasks} onDelete={deleteTask} emlekezteto = {emlekezteto}/>)
+     (<Tasks tasks = {tasks} onDelete={deleteTask} setReminder = {setReminder}/>)
       : ('Nincs feladat,esemeny')}
       
     </div>
