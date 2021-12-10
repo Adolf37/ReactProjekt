@@ -1,6 +1,6 @@
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import AddTask from "./components/AddTask";
 
 function App() {
@@ -8,6 +8,25 @@ function App() {
   const [show,setShow] = useState(false)
   const [tasks,setTasks] = useState([])
 
+  //run as soo as the page loads
+  useEffect(()=>{
+    const getTasks = async () =>{
+      //getting the json objcet with the data
+      const tasksFromServer = await fetchTasks()
+      //updating the tasks
+      setTasks(tasksFromServer)
+    }
+    getTasks();
+  },[])//we can add values and then this will run when the input value will change
+
+  const fetchTasks = async ()=>{
+    //fetching the data from the server
+    let res = await fetch('http://localhost:5000/tasks')
+    //convert the data into json
+    let data = await res.json();
+    //giveing back the json data
+    return data
+  }
 
 const addTask = (task)=>{
   const id = Math.floor(Math.random()*1000) + 1
