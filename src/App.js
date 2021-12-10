@@ -39,7 +39,13 @@ const addTask = (task)=>{
 }
 
 
-const deleteTask =(id)=>{
+const deleteTask = async (id)=>{
+
+  //deleting the task from the server with the given id
+  await fetch(`http://localhost:5000/tasks/${id}`,{
+    method:"DELETE"
+  })
+  
   // eliminateet the task with the given id
   let reduced_list = tasks.filter((task)=> task.id !== id)
   
