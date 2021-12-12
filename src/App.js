@@ -5,6 +5,9 @@ import AddTask from "./components/AddTask";
 
 function App() {
 
+
+
+  
   const [show,setShow] = useState(false)
   const [tasks,setTasks] = useState([])
 
@@ -14,9 +17,10 @@ function App() {
       //getting the json objcet with the data
       const tasksFromServer = await fetchTasks()
       //updating the tasks
-      setTasks(tasksFromServer)
+      setTasks(tasksFromServer);
     }
     getTasks();
+    
   },[])//we can add values and then this will run when the input value will change
 
   const fetchTasks = async ()=>{
@@ -25,17 +29,29 @@ function App() {
     //convert the data into json
     let data = await res.json();
     //giveing back the json data
+  
     return data
   }
 
-const addTask = (task)=>{
-  const id = Math.floor(Math.random()*1000) + 1
+ 
 
-  //concat the task and the id
-  const newTask = {id, ...task}
+const addTask = async (task)=>{
+  const res = await fetch('http://localhost:5000/tasks',{
+    //POST = adding new element
+    method:'POST',
+    headers : {
+      //type of the new element
+      'Content-Type':'application/json'
+    },
+    //converting from javascript object to json
+    body: JSON.stringify(task)
+  })
 
-  //adding the new task to the tasks
-  setTasks([...tasks, newTask])
+  //the return data is the new task which i added
+  const data = await res.json()
+
+  //updating on the ui
+  setTasks([...tasks,data])
 }
 
 

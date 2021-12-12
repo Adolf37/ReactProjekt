@@ -5,6 +5,12 @@
       "text": "Sakk",
       "day": "Ma 17:00",
       "reminder": false
+    },
+    {
+      "text": "Gym",
+      "day": "23:30",
+      "reminder": true,
+      "id": 3
     }
   ]
 }
