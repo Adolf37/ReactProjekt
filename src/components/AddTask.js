@@ -1,5 +1,5 @@
 import {useState} from 'react'
-
+import emailjs from "emailjs-com"
 
 const AddTask = ({onAdd}) => {
 
@@ -19,6 +19,17 @@ const AddTask = ({onAdd}) => {
             return 
         }
         onAdd({text,day,reminder})
+        
+        if(reminder === true){
+            emailjs.send("gmail","proba",{
+                from_name: "TaskTracker",
+                to_name: "Adolf",
+                message: text + ' ' + day,
+                },
+                'user_TYcrZRZayHHw7DFFPkYbu');
+        }
+        
+
         setDay('')
         setText('')
         setReminder(false)

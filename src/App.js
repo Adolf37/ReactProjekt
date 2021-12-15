@@ -5,11 +5,13 @@ import AddTask from "./components/AddTask";
 
 function App() {
 
-
-
+  
+  
   
   const [show,setShow] = useState(false)
   const [tasks,setTasks] = useState([])
+
+
 
   //run as soo as the page loads
   useEffect(()=>{
@@ -17,11 +19,15 @@ function App() {
       //getting the json objcet with the data
       const tasksFromServer = await fetchTasks()
       //updating the tasks
+      
       setTasks(tasksFromServer);
     }
     getTasks();
     
   },[])//we can add values and then this will run when the input value will change
+
+
+ 
 
   const fetchTasks = async ()=>{
     //fetching the data from the server
